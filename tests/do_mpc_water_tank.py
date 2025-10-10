@@ -10,6 +10,8 @@ u_max = 10
 h_max = 8
 w_true = 3
 h_ref = 5
+
+# MPC constants
 dt = 0.2
 n_horizon = 40
 Q_h = 40 # weight on height tracking error
@@ -44,7 +46,7 @@ setup_mpc = {
     't_step': dt,
     'store_full_solution': True
 }
-mpc.set_param(**setup_mpc)
+mpc.set_param(**setup_mpc) # mpc(n_horizon, t_step, (other optional params))
 
 h = model.x['h'] # stage cost
 u = model.u['u'] # terminal cost
@@ -147,3 +149,14 @@ plt.legend()
 plt.title('Control input')
 
 plt.show()
+
+
+# Now consider how MPC can be used for our solar race. Think abstract and about hard problems and how to solve them.
+# -? How often do we want to simulate? || How do we want to simulate?
+# --?? How should we simulate - often and spend little time without crunching many numbers or spend a lot of time doing  'careful' simulation crunching heavy numbers
+# ---- The way I want to simulate now is by letting x0 be start, run simulation that tells how we should drive first lap. Drive one lap, retrieve information from car (SoC, energy consumption, weather data, etc.), run simulation again.
+# ---- Will a strategy be to simulate if we see values that does not correspond to the values that were simulated, if so what is threshhold for this.
+# -? Are we able to continually retrieve data from car (SoC, energy consumption, etc.) so that when we are ready to run a simulation we can press run.
+# ---- Canbus
+# -? Do we do simulations at night the same as when there is (potentially) a lot of sun?
+# -? 
