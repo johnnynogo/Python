@@ -8,14 +8,14 @@ A = 2
 k = 3
 u_max = 10
 h_max = 8
-w_true = 3
+w_true = 4
 h_ref = 5
 
 # MPC constants
 dt = 0.2
 n_horizon = 40
-Q_h = 40 # weight on height tracking error
-R_u = 0.2 # weight on input effort
+Q_h = 40                # weight on height tracking error
+R_u = 0.2               # weight on input effort
 
 # ========================
 # Building nonlinear model
