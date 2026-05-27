@@ -1,0 +1,241 @@
+/* MatchMind Design System */
+/* Aesthetic: dark intelligence — deep midnight navy, electric acid yellow, surgical precision */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy-950:  #03060F;
+  --navy-900:  #060D1E;
+  --navy-800:  #0B1630;
+  --navy-700:  #0F2045;
+  --navy-600:  #152B5C;
+  --navy-400:  #2E4D8A;
+  --navy-200:  #6B8FC4;
+  --navy-100:  #B0C4E0;
+  --navy-50:   #E8EEF7;
+
+  --acid:      #C8FF00;
+  --acid-dim:  #A3D000;
+  --acid-glow: rgba(200,255,0,0.12);
+
+  --coral:     #FF5C5C;
+  --teal:      #00D4B4;
+  --amber:     #FFB547;
+  --muted:     #7A90B0;
+
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-xl: 32px;
+
+  --border: 1px solid rgba(255,255,255,0.07);
+  --border-accent: 1px solid rgba(200,255,0,0.3);
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.5), 0 8px 32px rgba(0,0,0,0.3);
+  --shadow-glow: 0 0 40px rgba(200,255,0,0.15);
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--navy-950);
+  color: var(--navy-50);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy-900); }
+::-webkit-scrollbar-thumb { background: var(--navy-600); border-radius: 2px; }
+
+/* Typography */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+a { color: var(--acid); text-decoration: none; }
+a:hover { color: var(--acid-dim); }
+
+/* Layout */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* Cards */
+.card {
+  background: var(--navy-800);
+  border: var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+.card-accent {
+  border: var(--border-accent);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.badge-win  { background: rgba(0,212,180,0.15); color: var(--teal); }
+.badge-draw { background: rgba(255,181,71,0.15); color: var(--amber); }
+.badge-loss { background: rgba(255,92,92,0.15);  color: var(--coral); }
+.badge-live { background: rgba(255,92,92,0.2);   color: var(--coral);
+              animation: pulse 2s ease-in-out infinite; }
+.badge-acid { background: var(--acid-glow); color: var(--acid); border: 1px solid rgba(200,255,0,0.25); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+/* Probability bar */
+.prob-bar {
+  display: flex;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  gap: 2px;
+}
+.prob-bar-home  { background: var(--teal);  border-radius: 3px 0 0 3px; }
+.prob-bar-draw  { background: var(--amber); }
+.prob-bar-away  { background: var(--coral); border-radius: 0 3px 3px 0; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  border: none;
+}
+.btn-primary {
+  background: var(--acid);
+  color: var(--navy-950);
+}
+.btn-primary:hover { background: var(--acid-dim); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--navy-100);
+  border: var(--border);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.05); color: #fff; }
+
+/* Inputs */
+input, select {
+  background: var(--navy-900);
+  border: var(--border);
+  border-radius: var(--r-sm);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 9px 14px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+input:focus, select:focus { border-color: rgba(200,255,0,0.4); }
+
+/* Stat grid */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.stat-card {
+  background: var(--navy-900);
+  border: var(--border);
+  border-radius: var(--r-md);
+  padding: 16px;
+  text-align: center;
+}
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--acid);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+/* EV chip */
+.ev-positive { color: var(--teal); font-weight: 600; }
+.ev-negative { color: var(--coral); }
+.ev-neutral  { color: var(--muted); }
+
+/* Loader */
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  color: var(--muted);
+  font-size: 14px;
+  gap: 10px;
+}
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid rgba(200,255,0,0.2);
+  border-top-color: var(--acid);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.4s ease both; }
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Grid dot background */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root { position: relative; z-index: 1; }
